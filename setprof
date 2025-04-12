@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+GPU_PATH="/sys/class/drm/card1/device/pp_power_profile_mode"
+
+if [ -z "${1}" ]
+then
+	echo "missing profile: idle|3d|vr"
+elif [ "${1}" = "idle" ]
+then
+	# Set CPU profile
+	powerprofilesctl set power-saver
+
+	# Set GPU profile
+	echo -n "2" > "${GPU_PATH}"
+elif [ "${1}" = "3d" ]
+then
+	# Set CPU profile
+	powerprofilesctl set performance
+
+	# Set GPU profile
+	echo -n "1" > "${GPU_PATH}"
+elif [ "${1}" = "vr" ]
+then
+	# Set CPU profile
+	powerprofilesctl set performance
+
+	# Set GPU profile
+	echo -n "4" > "${GPU_PATH}"
+else
+	echo "unknown profile \"${1}\""
+fi
+
