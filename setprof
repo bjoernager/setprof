@@ -29,4 +29,3 @@ then
 else
 	echo "unknown profile \"${1}\""
 fi
-

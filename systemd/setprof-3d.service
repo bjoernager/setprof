@@ -1,0 +1,10 @@
+[Unit]
+Description=Set power-saving profiles.
+Conflicts=setprof-idle.service
+Conflicts=setprof-vr.service
+
+[Service]
+ExecStart=/usr/bin/setprof 3d
+
+[Install]
+WantedBy=multi-user.target

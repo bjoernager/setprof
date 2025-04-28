@@ -1,6 +1,6 @@
-# `setprof`
+# setprof
 
-`setprof` is a CLI-utility for setting the combined power profiles of the host system.
+setprof is a CLI-utility for setting the combined power profiles of the host system.
 
 ```
 setprof <profile>
@@ -13,7 +13,14 @@ Support for other graphics cards (especially from NVIDIA) is not guaranteed.
 
 The following profiles are built-in:
 
-* `idle` for power-saving 
+* `idle` for power saving
 * `3d` for generic 3D rendering
 * `vr` for VR rendering
 
+## Installation
+
+Run the provided `install.sh` script to install setprof:
+
+```
+install.sh <base_directory>
+```
