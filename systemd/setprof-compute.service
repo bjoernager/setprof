@@ -1,11 +1,11 @@
 [Unit]
-Description=Set 3D-optimised profiles.
-Conflicts=setprof-compute.service
+Description=Set compute-optimised profiles.
+Conflicts=setprof-3d.service
 Conflicts=setprof-idle.service
 Conflicts=setprof-vr.service
 
 [Service]
-ExecStart=/usr/bin/setprof 3d
+ExecStart=/usr/bin/setprof compute
 
 [Install]
 WantedBy=multi-user.target

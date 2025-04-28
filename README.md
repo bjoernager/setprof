@@ -13,8 +13,9 @@ Support for other graphics cards (especially from NVIDIA) is not guaranteed.
 
 The following profiles are built-in:
 
-* `idle` for power saving
 * `3d` for generic 3D rendering
+* `compute` for CPU/GPU computing
+* `idle` for power saving
 * `vr` for VR rendering
 
 ## Installation
@@ -22,5 +23,7 @@ The following profiles are built-in:
 Run the provided `install.sh` script to install setprof:
 
 ```
-install.sh <base_directory>
+install.sh <module> <base_directory>
 ```
+
+Execute `install.sh` for more information.

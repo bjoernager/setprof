@@ -3,6 +3,13 @@
 This is the changelog of [setprof](https://mandelbrot.dk/bjoernager/setprof/).
 See `README.md` for more information.
 
+## 1.0
+
+* Add `compute` profile
+* Update readme
+* Rework installation script
+* Rework script diagnostics
+
 ## 0.2
 
 * Add changelog

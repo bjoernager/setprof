@@ -2,30 +2,63 @@
 
 GPU_PATH="/sys/class/drm/card1/device/pp_power_profile_mode"
 
-if [ -z "${1}" ]
+profile="${1}"
+
+error() {
+	echo "error: ${1}"
+	echo
+}
+
+help() {
+	echo "usage:"
+	echo "    setprof <profile>"
+	echo
+	echo "profiles:"
+	echo "    3d         for generic 3d rendering"
+	echo "    compute    for cpu/gpu computing"
+	echo "    idle       for power saving"
+	echo "    vr         for vr rendering"
+}
+
+if [ -z "${profile}" ]
 then
-	echo "missing profile: idle|3d|vr"
-elif [ "${1}" = "idle" ]
+	error "missing profile"
+	help
+
+	exit 2
+fi
+
+if [ "${profile}" = "3d" ]
 then
-	# Set CPU profile
+	# Set CPU profile.
+	powerprofilesctl set performance
+
+	# Set GPU profile.
+	echo -n "1" > "${GPU_PATH}"
+elif [ "${profile}" = "compute" ]
+then
+	# Set CPU profile.
+	powerprofilesctl set performance
+
+	# Set GPU profile.
+	echo -n "5" > "${GPU_PATH}"
+elif [ "${profile}" = "idle" ]
+then
+	# Set CPU profile.
 	powerprofilesctl set power-saver
 
-	# Set GPU profile
+	# Set GPU profile.
 	echo -n "2" > "${GPU_PATH}"
-elif [ "${1}" = "3d" ]
+elif [ "${profile}" = "vr" ]
 then
-	# Set CPU profile
+	# Set CPU profile.
 	powerprofilesctl set performance
 
-	# Set GPU profile
-	echo -n "1" > "${GPU_PATH}"
-elif [ "${1}" = "vr" ]
-then
-	# Set CPU profile
-	powerprofilesctl set performance
-
-	# Set GPU profile
+	# Set GPU profile.
 	echo -n "4" > "${GPU_PATH}"
 else
-	echo "unknown profile \"${1}\""
+	error "unknown profile \`${profile}\`"
+	help
+
+	exit 2
 fi
